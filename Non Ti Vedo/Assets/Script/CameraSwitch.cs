@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
-
 {
     public GameObject cameraLei;
     public GameObject cameraLui;
+
+    public GameObject playerLei;
+    public GameObject playerLui;
 
     private bool isLeiActive = true;
 
@@ -30,6 +32,10 @@ public class CameraSwitch : MonoBehaviour
     {
         cameraLei.SetActive(true);
         cameraLui.SetActive(false);
+
+        playerLei.SetActive(true);
+        playerLui.SetActive(false);
+
         isLeiActive = true;
     }
 
@@ -37,6 +43,10 @@ public class CameraSwitch : MonoBehaviour
     {
         cameraLei.SetActive(false);
         cameraLui.SetActive(true);
+
+        playerLei.SetActive(false);
+        playerLui.SetActive(true);
+
         isLeiActive = false;
     }
 }

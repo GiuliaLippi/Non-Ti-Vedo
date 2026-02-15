@@ -643,6 +643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraLei: {fileID: 963194225}
   cameraLui: {fileID: 2120282317}
+  playerLei: {fileID: 164910211}
+  playerLui: {fileID: 1271454122}
 --- !u!1 &1271454122
 GameObject:
   m_ObjectHideFlags: 0
