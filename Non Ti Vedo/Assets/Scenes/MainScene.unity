@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 705392689}
   - component: {fileID: 705392688}
   - component: {fileID: 705392687}
+  - component: {fileID: 705392691}
   m_Layer: 0
   m_Name: Key_Rossa
   m_TagString: Untagged
@@ -531,6 +532,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &705392691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705392686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8a198726d9a8540a552ea9fac71329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyName: Chiave
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0e707ca956d2e4e960957c3bf81a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choiceA: Prendere la chiave rossa
+  choiceB: Prendere la chiave blu
+  keyA: {fileID: 0}
+  keyB: {fileID: 0}
 --- !u!1 &1104826094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1089,7 @@ GameObject:
   - component: {fileID: 1730115323}
   - component: {fileID: 1730115322}
   - component: {fileID: 1730115321}
+  - component: {fileID: 1730115325}
   m_Layer: 0
   m_Name: Key_Blu
   m_TagString: Untagged
@@ -1164,6 +1183,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1730115325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730115320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8a198726d9a8540a552ea9fac71329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyName: Chiave
 --- !u!1 &2120282317
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class NPCChoice : MonoBehaviour
 
     private bool interacted = false;
 
-    public override void Interact()
+    public void Interact()
     {
         if (interacted) return;
 
