@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8a198726d9a8540a552ea9fac71329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyName: Chiave
+  keyName: Chiave Rossa
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,8 +865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceA: Prendere la chiave rossa
   choiceB: Prendere la chiave blu
-  keyA: {fileID: 0}
-  keyB: {fileID: 0}
+  keyA: {fileID: 705392691}
+  keyB: {fileID: 1730115325}
 --- !u!1 &1104826094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8a198726d9a8540a552ea9fac71329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyName: Chiave
+  keyName: Chiave Blu
 --- !u!1 &2120282317
 GameObject:
   m_ObjectHideFlags: 0
