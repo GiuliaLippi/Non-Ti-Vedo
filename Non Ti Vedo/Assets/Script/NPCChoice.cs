@@ -1,49 +1,66 @@
 using UnityEngine;
-using System;
 
 public class NPCChoice : Interactable
 {
-    [Header("Testi Scelte")]
-    [SerializeField] private string choiceA = "Prendere la chiave rossa";
-    [SerializeField] private string choiceB = "Prendere la chiave blu";
-
-    [Header("Dialogo")]
-    [SerializeField] private string dialogoNPC = "Hai bisogno di una chiave...";
+    [Header("Scelte")]
+    public string choiceA = "Prendere la chiave rossa";
+    public string choiceB = "Prendere la chiave blu";
 
     [Header("Chiavi")]
-    [SerializeField] private Chiave keyA;
-    [SerializeField] private Chiave keyB;
+    public Chiave keyA;
+    public Chiave keyB;
+
     private bool interacted = false;
+
+    /// <summary>
+    /// Metodo chiamato dallo script Interactable.
+    /// Avvia la scelta del giocatore.
+    /// </summary>
     public void InteractKey()
     {
         if (interacted) return;
+
         interacted = true;
-        GestoreDialogoUI.Instance.MostraDialogo(
-            dialogoNPC,
-            choiceA,
-            choiceB,
-            SelezioneChiaveA,
-            SelezioneChiaveB
-        );
+
+        Debug.Log("NPC: Hai bisogno di una chiave...");
+        Debug.Log("Premi 1 → " + choiceA);
+        Debug.Log("Premi 2 → " + choiceB);
     }
-    private void SelezioneChiaveA()
+
+    /// <summary>
+    /// Controlla input del giocatore.
+    /// </summary>
+    private void Update()
     {
-        DaiChiave(keyA);
-        TerminaInterazione();
+        if (!interacted) return;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Hai scelto: " + choiceA);
+            DaiChiave(keyA);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("Hai scelto: " + choiceB);
+            DaiChiave(keyB);
+        }
     }
-    private void SelezioneChiaveB()
-    {
-        DaiChiave(keyB);
-        TerminaInterazione();
-    }
+
+    /// <summary>
+    /// Assegna la chiave selezionata.
+    /// </summary>
     private void DaiChiave(Chiave chiave)
     {
         if (chiave != null)
+        {
             chiave.Raccogli();
-    }
-    private void TerminaInterazione()
-    {
+            Debug.Log("Chiave ottenuta!");
+        }
+        else
+        {
+            Debug.LogWarning("Chiave non assegnata nell'Inspector.");
+        }
+
         interacted = false;
-        GestoreDialogoUI.Instance.NascondiDialogo();
     }
 }
