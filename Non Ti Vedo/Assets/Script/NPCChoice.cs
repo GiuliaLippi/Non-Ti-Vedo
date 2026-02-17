@@ -1,35 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// Cambia da MonoBehaviour a Interactable
-public class NPCChoice : Interactable 
+public class NPCChoice : Interactable
 {
+    [Header("Scelte")]
     public string choiceA = "Prendere la chiave rossa";
     public string choiceB = "Prendere la chiave blu";
-    public Key keyA;
-    public Key keyB;
+
+    [Header("Chiavi")]
+    public Chiave keyA;
+    public Chiave keyB;
 
     private bool interacted = false;
 
-    // Aggiungi 'override' per sostituire il metodo base
-    public void InteractKey() 
+    /// <summary>
+    /// Metodo chiamato dallo script Interactable.
+    /// Avvia la scelta del giocatore.
+    /// </summary>
+    public void InteractKey()
     {
         if (interacted) return;
+
         interacted = true;
-        Debug.Log("NPC: Scegli 1 o 2");
+
+        Debug.Log("NPC: Hai bisogno di una chiave...");
+        Debug.Log("Premi 1 → " + choiceA);
+        Debug.Log("Premi 2 → " + choiceB);
     }
 
-    void Update()
+    /// <summary>
+    /// Controlla input del giocatore.
+    /// </summary>
+    private void Update()
     {
         if (!interacted) return;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { GiveKey(keyA); interacted = false; }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) { GiveKey(keyB); interacted = false; }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Hai scelto: " + choiceA);
+            DaiChiave(keyA);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("Hai scelto: " + choiceB);
+            DaiChiave(keyB);
+        }
     }
 
-    void GiveKey(Key key)
+    /// <summary>
+    /// Assegna la chiave selezionata.
+    /// </summary>
+    private void DaiChiave(Chiave chiave)
     {
-        if(key != null) key.PickUp();
+        if (chiave != null)
+        {
+            chiave.Raccogli();
+            Debug.Log("Chiave ottenuta!");
+        }
+        else
+        {
+            Debug.LogWarning("Chiave non assegnata nell'Inspector.");
+        }
+
+        interacted = false;
     }
 }
