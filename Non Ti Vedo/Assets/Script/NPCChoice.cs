@@ -1,35 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-// Cambia da MonoBehaviour a Interactable
-public class NPCChoice : Interactable 
+public class NPCChoice : Interactable
 {
-    public string choiceA = "Prendere la chiave rossa";
-    public string choiceB = "Prendere la chiave blu";
-    public Key keyA;
-    public Key keyB;
+    [Header("Testi Scelte")]
+    [SerializeField] private string choiceA = "Prendere la chiave rossa";
+    [SerializeField] private string choiceB = "Prendere la chiave blu";
 
+    [Header("Dialogo")]
+    [SerializeField] private string dialogoNPC = "Hai bisogno di una chiave...";
+
+    [Header("Chiavi")]
+    [SerializeField] private Chiave keyA;
+    [SerializeField] private Chiave keyB;
     private bool interacted = false;
-
-    // Aggiungi 'override' per sostituire il metodo base
-    public void InteractKey() 
+    public void InteractKey()
     {
         if (interacted) return;
         interacted = true;
-        Debug.Log("NPC: Scegli 1 o 2");
+        GestoreDialogoUI.Instance.MostraDialogo(
+            dialogoNPC,
+            choiceA,
+            choiceB,
+            SelezioneChiaveA,
+            SelezioneChiaveB
+        );
     }
-
-    void Update()
+    private void SelezioneChiaveA()
     {
-        if (!interacted) return;
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { GiveKey(keyA); interacted = false; }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) { GiveKey(keyB); interacted = false; }
+        DaiChiave(keyA);
+        TerminaInterazione();
     }
-
-    void GiveKey(Key key)
+    private void SelezioneChiaveB()
     {
-        if(key != null) key.PickUp();
+        DaiChiave(keyB);
+        TerminaInterazione();
+    }
+    private void DaiChiave(Chiave chiave)
+    {
+        if (chiave != null)
+            chiave.Raccogli();
+    }
+    private void TerminaInterazione()
+    {
+        interacted = false;
+        GestoreDialogoUI.Instance.NascondiDialogo();
     }
 }
