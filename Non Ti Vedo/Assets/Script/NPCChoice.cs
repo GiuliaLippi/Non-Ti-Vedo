@@ -13,7 +13,7 @@ public class NPCChoice : Interactable
     private bool interacted = false;
 
     // Aggiungi 'override' per sostituire il metodo base
-    public override void Interact() 
+    public void InteractKey() 
     {
         if (interacted) return;
         interacted = true;

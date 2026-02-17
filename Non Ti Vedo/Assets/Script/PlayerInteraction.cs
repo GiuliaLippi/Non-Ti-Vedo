@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     public float interactionRange = 2f;
     public Camera playerCamera;
+    public bool CloseNpc = false;
+    public GameObject Sasso;
 
     private void Update()
     {
@@ -14,19 +17,15 @@ public class PlayerInteraction : MonoBehaviour
 
     void CheckInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && CloseNpc)
         {
-            Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, interactionRange))
-            {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                }
-            }
+          Sasso.GetComponent<Interactable>().Interact();
         }
     }
-}
+    void OnTriggerStay (Collider NPC)
+    {
+       if (NPC.tag == "NPC"){CloseNpc = true; Sasso = NPC.gameObject;}
+    }
+
+} 
+
