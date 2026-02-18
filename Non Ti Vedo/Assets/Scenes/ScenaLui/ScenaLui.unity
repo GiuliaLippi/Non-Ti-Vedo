@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 164910218}
   m_Layer: 0
   m_Name: Player_Lei
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -855,6 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Premi E per interagire
+  interactionDistance: 2
 --- !u!114 &1076737082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Premi E per interagire
+  interactionDistance: 2
   choiceA: Prendere la chiave rossa
   choiceB: Prendere la chiave blu
   keyA: {fileID: 705392691}
@@ -985,7 +987,7 @@ GameObject:
   - component: {fileID: 1271454129}
   m_Layer: 0
   m_Name: Player_Lui
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1371,9 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a849d498a9a7893469e7db14bf4b7460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 1
-  requiredRedKey: {fileID: 0}
-  requiredBlueKey: {fileID: 0}
+  redKey: {fileID: 0}
+  blueKey: {fileID: 0}
   leiScenes: []
   luiScenes: []
 --- !u!1 &2120282317
