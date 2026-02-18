@@ -7,6 +7,7 @@ public class Key : MonoBehaviour
     public string keyName = "Chiave";
 
     private bool collected = false;
+    public bool IsCollected => collected;
 
     public void PickUp()
     {
