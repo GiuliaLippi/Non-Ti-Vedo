@@ -7,16 +7,15 @@ public class NPCChoice : Interactable
     public string choiceB = "Prendere la chiave blu";
 
     [Header("Chiavi")]
-    public Chiave keyA;
-    public Chiave keyB;
+    public Key keyA;
+    public Key keyB;
 
     private bool interacted = false;
 
     /// <summary>
-    /// Metodo chiamato dallo script Interactable.
-    /// Avvia la scelta del giocatore.
+    /// Questo metodo viene chiamato dallo script Interactable quando il player preme E.
     /// </summary>
-    public void InteractKey()
+    public void HandleInteraction()
     {
         if (interacted) return;
 
@@ -27,9 +26,6 @@ public class NPCChoice : Interactable
         Debug.Log("Premi 2 → " + choiceB);
     }
 
-    /// <summary>
-    /// Controlla input del giocatore.
-    /// </summary>
     private void Update()
     {
         if (!interacted) return;
@@ -46,14 +42,11 @@ public class NPCChoice : Interactable
         }
     }
 
-    /// <summary>
-    /// Assegna la chiave selezionata.
-    /// </summary>
-    private void DaiChiave(Chiave chiave)
+    private void DaiChiave(Key chiave)
     {
         if (chiave != null)
         {
-            chiave.Raccogli();
+            chiave.PickUp();
             Debug.Log("Chiave ottenuta!");
         }
         else

@@ -2,41 +2,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-public class Trapdoor : MonoBehaviour
+public class Botola : MonoBehaviour
 {
-    [Header("Interaction")]
-    [SerializeField] private float interactionDistance = 2f;
-    [SerializeField] private Transform player;
-
     [Header("Keys")]
-    [SerializeField] private Key redKey;
-    [SerializeField] private Key blueKey;
+    public Key redKey;
+    public Key blueKey;
 
     [Header("Scenes - Lei")]
-    [SerializeField] private List<string> leiScenes;
+    public List<string> leiScenes;
 
     [Header("Scenes - Lui")]
-    [SerializeField] private List<string> luiScenes;
+    public List<string> luiScenes;
 
     private bool opened = false;
 
-    private void Awake()
-    {
-        InitializeReferences();
-    }
-
-    private void Update()
+    /// <summary>
+    /// Questo metodo viene chiamato dallo script Interactable quando il player preme E.
+    /// </summary>
+    public void HandleInteraction()
     {
         if (opened) return;
 
-        if (IsPlayerInRange() && Input.GetKeyDown(KeyCode.E))
-        {
-            TryOpenTrapdoor();
-        }
-    }
-
-    private void TryOpenTrapdoor()
-    {
         if (redKey != null && redKey.IsCollected)
         {
             OpenWithRedKey();
@@ -56,7 +42,6 @@ public class Trapdoor : MonoBehaviour
     {
         opened = true;
         Debug.Log("Botola aperta con Chiave Rossa.");
-
         LoadRandomScene(leiScenes);
     }
 
@@ -64,7 +49,6 @@ public class Trapdoor : MonoBehaviour
     {
         opened = true;
         Debug.Log("Botola aperta con Chiave Blu.");
-
         LoadRandomScene(luiScenes);
     }
 
@@ -75,28 +59,8 @@ public class Trapdoor : MonoBehaviour
             Debug.LogError("Lista scene vuota o non assegnata.");
             return;
         }
-        
+
         int index = Random.Range(0, scenes.Count);
-        string sceneName = scenes[index];
-
-        SceneManager.LoadScene(sceneName);
-    }
-
-    private bool IsPlayerInRange()
-    {
-        if (player == null) return false;
-
-        float distance = Vector3.Distance(player.position, transform.position);
-        return distance <= interactionDistance;
-    }
-
-    private void InitializeReferences()
-    {
-        if (player == null)
-        {
-            GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
-            if (foundPlayer != null)
-                player = foundPlayer.transform;
-        }
+        SceneManager.LoadScene(scenes[index]);
     }
 }
